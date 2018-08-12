@@ -1,0 +1,8 @@
+# Build artifacts
+*.py[cod]
+ga_api_python_client.egg-info/
+build/
+dist/
+
+.DS_Store
+__pycache__/
