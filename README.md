@@ -16,29 +16,34 @@ $ easy_install --upgrade gaapi
 # Acquire Google credentials
 
 **1.  To create a Service Account Credentials, follow the below link**
+
 https://support.google.com/a/answer/7378726?hl=en
+
 **2.  Get view ID in Google Analytics, follow the below link**
+
 https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics
+
 ------------
+
 # Get Started
-Instanstiate GA Client:
+#### Instanstiate GA Client
 
     from gaapi import Client
 
-    # GA_SERVICE_ACCOUNT_CREDENTIALS = {
-    #    "type": "service_account",
-    #    "project_id": "analytics-xyz",
-    #    "private_key_id": "private_key_id",
-    #    "private_key": "-----BEGIN PRIVATE KEY-----ASADASDONWQENLKQWEIL\nASDASDOILWQE",
-    #    "client_email": "username@analytics-xyz.iam.gserviceaccount.com",
-    #    "client_id": "103486406559549721528",
-    #    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    #    "token_uri": "https://accounts.google.com/o/oauth2/token",
-    #    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    #    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/username@analytics-xyz.iam.gserviceaccount.com"
-    # }
-    # GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
-    # GA_VIEW_ID = '12345567890'
+    GA_SERVICE_ACCOUNT_CREDENTIALS = {
+       "type": "service_account",
+       "project_id": "analytics-xyz",
+       "private_key_id": "private_key_id",
+       "private_key": "-----BEGIN PRIVATE KEY-----ASADASDONWQENLKQWEIL\nASDASDOILWQE",
+       "client_email": "username@analytics-xyz.iam.gserviceaccount.com",
+       "client_id": "103486406559549721528",
+       "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+       "token_uri": "https://accounts.google.com/o/oauth2/token",
+       "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+       "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/username@analytics-xyz.iam.gserviceaccount.com"
+    }
+    GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
+    GA_VIEW_ID = '12345567890'
 
 
     ga = Client(
@@ -47,9 +52,11 @@ Instanstiate GA Client:
             view_id=GA_VIEW_ID
          )
 
-Generate Query::
+### Generate Query
 
-    # Form 1 : ORM format
+    
+#### ORM format
+
     query = ga.query.date_ranges(
             start_date='2018-07-03', end_date='today'
         ).metrics(
@@ -67,8 +74,8 @@ Generate Query::
         )
 
     # Clone query (Only for ORM format)
-    # Add `clean=True` to reset a value in the query (say date_ranges)
-    cloned_query = ga.query.clone(query2).date_ranges(
+    # Add `clean=True` to reset a value in the query (say for date_ranges)
+    cloned_query = ga.query.clone(query).date_ranges(
              start_date='2018-08-01', end_date='today', clean=True
         )
 
@@ -76,7 +83,7 @@ Generate Query::
     print(query.json())
 
 
-    # Form 2 : Python Dictionary format
+#### Python Dictionary format
     query = {
         'date_ranges': {
             'start_date': '2018-07-03',
@@ -97,7 +104,7 @@ Generate Query::
         }]
     }
 
-    # Form 3 : Google's original query format
+#### Google's original query format
     query = {
         'dateRanges': {
             'startDate': '2018-07-03',
@@ -120,28 +127,27 @@ Generate Query::
 
 
 
-Request Data::
+#### Request Data
 
-    # Using ORM query
+    # Using ORM query or python dictionary or json
     response = ga.batch_get(query)
     
     # Cache for 600ms
     response = ga.batch_get(query, cache_ttl=600)
 
-    # Using query as python dictionary 
 ------
 
-# Third Party Libraries and Dependencies
+## Third Party Libraries and Dependencies
 The following libraries will be installed when you install the client library:
 * [google-api-python-client](https://github.com/google/google-api-python-client) (Google Client Library)
 * [google-auth](https://github.com/GoogleCloudPlatform/google-auth-library-python/) (Google Auth Library)
 * [walrus](https://github.com/coleifer/walrus) (Light weight Caching Library)
 
-# To-Dos
+## To-Dos
 - Response Object Manipulation. (This update will enable to you to generate response in Google Raw Response, Simplified Response, CSV, Panda Dataframe).
 - Test cases.
 
-# Contribute
+## Contribute
 1. Look for an open [issue](https://github.com/rakeshgunduka/gaapi/issues) or create new issue to get a dialog going about the new feature or bug that you've discovered.
 2. Fork the [repository](https://github.com/rakeshgunduka/gaapi) on Github to start making your changes to the master branch (or branch off of it).
 3. Write a test which shows that the bug was fixed or that the feature works as expected.
