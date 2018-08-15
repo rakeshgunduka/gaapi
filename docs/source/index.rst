@@ -1,27 +1,47 @@
-# Gaapi
+Gaapi
+=================================
+A light weight python wrapper for `Google's Analytics Reporting API v4 <https://developers.google.com/analytics/devguides/reporting/core/v4/>`_ written upon Google API Python Client.
 
-A light weight python wrapper for [Google's Analytics Reporting API v4](https://developers.google.com/analytics/devguides/reporting/core/v4/) written upon [Google's API Python Client](https://github.com/google/google-api-python-client).
+Features provided by Gaapi 
+---------------------------
 
-# Installation
-To install, simply use `pip` or `easy_install`:
+- Analytics focussed library to handle reporting api.
+- Simplified ORM style usage.
+- Enables you to cache your response data.
+- Enables you to get simplified response data. (TO-DO)
 
-```bash
-$ pip install --upgrade gaapi
-```
-or
-```bash
-$ easy_install --upgrade gaapi
-```
+------------
 
-# Acquire Google credentials
+Installation
+---------------
+To install, simply use pip or easy_install::
+
+    $ pip install --upgrade gaapi
+
+or::
+
+    $ easy_install --upgrade gaapi
+
+------------
+
+Acquire Google credentials
+--------------------------
 
 **1.  To create a Service Account Credentials, follow the below link**
+
+
 https://support.google.com/a/answer/7378726?hl=en
+
+
 **2.  Get view ID in Google Analytics, follow the below link**
+
 https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics
+
 ------------
-# Get Started
-Instanstiate GA Client:
+
+Get Started
+-----------
+Instanstiate GA Client::
 
     from gaapi import Client
 
@@ -129,21 +149,30 @@ Request Data::
     response = ga.batch_get(query, cache_ttl=600)
 
     # Using query as python dictionary 
+    
+------------
+
+Third Party Libraries and Dependencies
+--------------------------------------
+The following external libraries will be installed when you install gaapi ...
+
+- `google-api-python-client <https://github.com/google/google-api-python-client) (Google Client Library>`_
+- `google-auth <https://github.com/GoogleCloudPlatform/google-auth-library-python/) (Google Auth Library>`_
+- `walrus <https://github.com/coleifer/walrus) (Light weight Caching Library>`_
+
+To-Dos
 ------
-
-# Third Party Libraries and Dependencies
-The following libraries will be installed when you install the client library:
-* [google-api-python-client](https://github.com/google/google-api-python-client) (Google Client Library)
-* [google-auth](https://github.com/GoogleCloudPlatform/google-auth-library-python/) (Google Auth Library)
-* [walrus](https://github.com/coleifer/walrus) (Light weight Caching Library)
-
-# To-Dos
 - Response Object Manipulation. (This update will enable to you to generate response in Google Raw Response, Simplified Response, CSV, Panda Dataframe).
 - Test cases.
 
-# Contribute
-1. Look for an open [issue](https://github.com/rakeshgunduka/gaapi/issues) or create new issue to get a dialog going about the new feature or bug that you've discovered.
-2. Fork the [repository](https://github.com/rakeshgunduka/gaapi) on Github to start making your changes to the master branch (or branch off of it).
+Contribute
+----------
+
+1. Look for an open `issue <https://github.com/rakeshgunduka/gaapi/issues>`_ or create new issue to get a dialog going about the new feature or bug that you've discovered.
+
+2. Fork the `repository <https://github.com/rakeshgunduka/gaapi>`_ on Github to start making your changes to the master branch (or branch off of it).
+
 3. Write a test which shows that the bug was fixed or that the feature works as expected.
+
 4. Make a pull request.
 

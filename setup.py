@@ -1,27 +1,26 @@
 import sys
 
 if sys.version_info < (2, 7):
-  print('ga-api-python-client requires python version >= 2.7.',
+  print('gaapi requires python version >= 2.7.',
         file=sys.stderr)
   sys.exit(1)
 if (3, 1) <= sys.version_info < (3, 3):
-  print('ga-api-python-client requires python3 version >= 3.3.',
+  print('gaapi requires python3 version >= 3.3.',
         file=sys.stderr)
   sys.exit(1)
 
 from setuptools import setup
-import gaclient
+import gaapi
 
 setup(
-    name="ga-api-python-client",
-    version=gaclient.__version__,
-    description="Google Analytics API Client Library for Python",
-    long_description="""The Google Analytics API Client for Python is a client library for
-    accessing google analytics api.""",
+    name="gaapi",
+    version=gaapi.__version__,
+    description="A light weight python wrapper for Google’s Analytics Reporting API v4 written upon Google API Python Client.",
+    long_description="""Google analytics python api wrapper for Google’s Analytics Reporting API v4 using Googles API python client. Additionally""",
     author="Rakesh Gunduka",
     author_email="rakesh.gunduka@gmail.com",
-    url="http://github.com/rakesh/ga-api-python-client/",
-    install_requires=["google-api-python-client", "oauth2client", "walrus"],
+    url="http://github.com/rakesh/gaapi/",
+    install_requires=["google-api-python-client", "google-auth", "walrus"],
     packages=["gaclient"],
     package_data={},
     license="http://www.opensource.org/licenses/mit-license.php",
@@ -38,6 +37,5 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
-        'Topic :: Internet :: WWW/HTTP',
     ],
 )
