@@ -2,6 +2,12 @@
 
 A light weight python wrapper for [Google's Analytics Reporting API v4](https://developers.google.com/analytics/devguides/reporting/core/v4/) written upon [Google's API Python Client](https://github.com/google/google-api-python-client).
 
+# Features provided by Gaapi
+- Analytics focussed library to handle reporting api.
+- Pythonic style usage.
+- Enables you to cache your response data.
+- Enables you to get simplified response data. (TO-DO)
+
 # Installation
 To install, simply use `pip` or `easy_install`:
 
