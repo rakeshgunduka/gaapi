@@ -6,7 +6,7 @@ Features provided by Gaapi
 ---------------------------
 
 - Analytics focussed library to handle reporting api.
-- Simplified ORM style usage.
+- Pythonic style usage.
 - Enables you to cache your response data.
 - Enables you to get simplified response data. (TO-DO)
 
@@ -72,7 +72,7 @@ Instanstiate GA Client
 Generate Query
 ''''''''''''''
 
-ORM format::
+Gaapi format::
 
     query = ga.query.date_ranges(
             start_date='2018-07-03', end_date='today'
@@ -90,7 +90,7 @@ ORM format::
             }],
         )
 
-    # Clone query (Only for ORM format)
+    # Clone query (Only for Gaapi format)
     # Add `clean=True` to reset a value in the query (say date_ranges)
     cloned_query = ga.query.clone(query2).date_ranges(
              start_date='2018-08-01', end_date='today', clean=True
@@ -151,7 +151,7 @@ Request Data
 ''''''''''''
 ::
 
-    # Using ORM query or python dictionary or json
+    # Using gaapi query or python dictionary or json
     response = ga.batch_get(query)
     
     # Cache for 600ms

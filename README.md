@@ -55,7 +55,7 @@ https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics
 ### Generate Query
 
     
-#### ORM format
+#### Gaapi format
 
     query = ga.query.date_ranges(
             start_date='2018-07-03', end_date='today'
@@ -73,7 +73,7 @@ https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics
             }],
         )
 
-    # Clone query (Only for ORM format)
+    # Clone query (Only for Gaapi format)
     # Add `clean=True` to reset a value in the query (say for date_ranges)
     cloned_query = ga.query.clone(query).date_ranges(
              start_date='2018-08-01', end_date='today', clean=True
@@ -129,7 +129,7 @@ https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics
 
 #### Request Data
 
-    # Using ORM query or python dictionary or json
+    # Using gaapi query or python dictionary or json
     response = ga.batch_get(query)
     
     # Cache for 600ms

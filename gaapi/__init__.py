@@ -3,7 +3,6 @@ __version__ = '0.1.0'
 import re
 import hashlib
 import pickle
-import settings
 
 from apiclient.discovery import build
 from google.oauth2 import service_account

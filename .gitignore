@@ -1,6 +1,6 @@
 # Build artifacts
 *.py[cod]
-ga_api_python_client.egg-info/
+gaapi.egg-info/
 build/
 dist/
 
