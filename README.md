@@ -48,13 +48,11 @@ https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics
        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/username@analytics-xyz.iam.gserviceaccount.com"
     }
-    GA_SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
     GA_VIEW_ID = '12345567890'
 
 
     ga = Client(
             credentials=GA_SERVICE_ACCOUNT_CREDENTIALS,
-            scopes=GA_SCOPES,
             view_id=GA_VIEW_ID
          )
 

@@ -76,9 +76,8 @@ class Query(object):
 
 class Client(object):
 
-    def __init__(self, credentials, scopes, view_id):
-        credentials = service_account.Credentials.from_service_account_info(
-            settings.GA_SERVICE_ACCOUNT_CREDENTIALS)
+    def __init__(self, credentials, view_id):
+        credentials = service_account.Credentials.from_service_account_info(credentials)
         # Build the service object.
         self.analytics = build('analyticsreporting', 'v4', credentials=credentials)
         self.view_id = view_id
