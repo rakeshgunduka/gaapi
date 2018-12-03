@@ -121,6 +121,6 @@ class RTClient(Client):
         self.analytics = build('analytics', 'v3', credentials=credentials).data().realtime().get
 
 
-    def get(self, *args, **kw)
+    def get(self, *args, **kw):
         resp = self.analytics(**kw).execute()
         return resp
