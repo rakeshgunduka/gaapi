@@ -1,4 +1,4 @@
-__version__ = '0.1.1'
+__version__ = '0.1.3'
 
 import re
 import hashlib
@@ -8,10 +8,6 @@ from apiclient.discovery import build
 from google.oauth2 import service_account
 
 from walrus import Database
-
-db = Database()
-cache = db.cache()
-
 
 class InvalidJsonError(Exception):
     code = 400
@@ -76,13 +72,19 @@ class Query(object):
 
 class Client(object):
 
-    def __init__(self, credentials, view_id):
+    def __init__(self, credentials, view_id, redis_args=None):
         credentials = service_account.Credentials.from_service_account_info(credentials)
         # Build the service object.
-        self.analytics = build('analyticsreporting', 'v4', credentials=credentials)
+        self.redis_args = redis_args or {}
         self.view_id = view_id
+        self.build(credentials)
 
-    def batch_get(self, obj=None, cache_ttl=None):
+
+    def build(self, credentials):
+        self.analytics = build('analyticsreporting', 'v4', credentials=credentials).reports().batchGet
+
+
+    def batch_get(self, query=None, cache_ttl=None):
         cache_on = bool(cache_ttl)
         if isinstance(obj, Query):
             request_params = obj.json(camelify=True)
@@ -94,9 +96,11 @@ class Client(object):
         self.request_query = {
             'reportRequests': request_params
         }
-        execute = self.analytics.reports().batchGet(body=self.request_query).execute
+        execute = self.analytics(body=self.request_query).execute
         if cache_on:
-            deco = cache.cached(self.key_fn, timeout=self.cache_ttl, metrics=True)
+            if not self.cache:
+                self.cache = Database(**redis_args).cache()
+            deco = self.cache.cached(self.key_fn, timeout=self.cache_ttl, metrics=True)
             execute = deco(execute)
         resp = execute()
         return resp
@@ -109,3 +113,14 @@ class Client(object):
     def __getattr__(self, name):
         if name == 'query':
             return Query()
+
+
+class RTClient(Client):
+
+    def build(self, credentials):
+        self.analytics = build('analytics', 'v3', credentials=credentials).data().realtime().get
+
+
+    def get(self, *args, **kw)
+        resp = self.analytics(**kw).execute()
+        return resp
