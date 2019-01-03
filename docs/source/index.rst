@@ -1,4 +1,4 @@
-Gaapi
+Gaapi 0.1.4
 =================================
 A light weight python wrapper for `Google's Analytics Reporting API v4 <https://developers.google.com/analytics/devguides/reporting/core/v4/>`_ written upon Google API Python Client.
 
