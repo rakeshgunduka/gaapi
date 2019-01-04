@@ -9,6 +9,7 @@ setup(
     long_description="""Google analytics python api wrapper for Google's Analytics Reporting API v4 using Googles API python client. Additionally also enables caching.""",
     author="Rakesh Gunduka",
     include_package_data=True,
+    package_data={},
     author_email="rakesh.gunduka@gmail.com",
     url="http://github.com/rakeshgunduka/gaapi/",
     install_requires=["google-api-python-client", "google-auth", "walrus"],
