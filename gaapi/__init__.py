@@ -84,10 +84,10 @@ class Client(object):
 
     def batch_get(self, query=None, cache_ttl=None):
         cache_on = bool(cache_ttl)
-        if isinstance(obj, Query):
-            request_params = obj.json(camelify=True)
-        elif isinstance(obj, dict):
-            request_params = _camelify(obj)
+        if isinstance(query, Query):
+            request_params = query.json(camelify=True)
+        elif isinstance(query, dict):
+            request_params = _camelify(query)
         else:
             raise InvalidJsonError()
         request_params['viewId'] = self.view_id
